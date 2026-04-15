@@ -1,0 +1,16 @@
+{
+  "name": "@barberia/shared",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.0.0",
+    "typescript": "^5.0.0"
+  }
+}

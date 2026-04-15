@@ -1,0 +1,26 @@
+{
+  "name": "@barberia/backend",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@barberia/shared": "*",
+    "@fastify/cors": "^9.0.0",
+    "fastify": "^4.20.0",
+    "googleapis": "^126.0.0",
+    "telegraf": "^4.14.0",
+    "node-cron": "^3.0.0",
+    "dotenv": "^16.0.0",
+    "dayjs": "^1.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/node-cron": "^3.0.0",
+    "typescript": "^5.0.0",
+    "tsx": "^4.0.0"
+  }
+}

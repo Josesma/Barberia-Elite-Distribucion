@@ -1,0 +1,22 @@
+{
+  "name": "barberia-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npx concurrently -c \"blue,green\" \"npm run dev:backend\" \"npm run dev:web\"",
+    "dev:backend": "npm run dev --workspace=@barberia/backend",
+    "dev:bot": "npm run dev --workspace=@barberia/bot",
+    "dev:web": "npm run dev --workspace=@barberia/web",
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces"
+  },
+
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "tsx": "^4.0.0",
+    "prettier": "^3.0.0"
+  }
+}

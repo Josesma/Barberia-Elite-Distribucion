@@ -1,0 +1,123 @@
+// packages/shared/prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  FINISHED
+  CANCELLED
+}
+
+model User {
+  id              String           @id @default(uuid())
+  telegramId      String           @unique
+  username        String?
+  firstName       String?
+  lastName        String?
+  role            Role             @default(USER)
+  visitCount      Int              @default(0)
+  loyaltyTier     String?          @default("Bronce") // Bronce, Plata, Oro
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  
+  // Relations
+  appointments    Appointment[]
+  clientProfile   Client?
+  waitlistEntries WaitlistEntry[]
+}
+
+model Client {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  phone       String?
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Appointment {
+  id            String            @id @default(uuid())
+  userId        String
+  startTime     DateTime
+  endTime       DateTime
+  status        AppointmentStatus @default(PENDING)
+  googleEventId String?           @unique
+  serviceName   String?           @default("Corte de Cabello")
+  price         Decimal?          @db.Decimal(10, 2)
+  paymentMethod String?           @default("Efectivo")
+  reminderSent  Boolean           @default(false)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  // Relations
+  user          User              @relation(fields: [userId], references: [id])
+}
+
+model Availability {
+  id        String   @id @default(uuid())
+  dayOfWeek Int      // 0 (Sunday) to 6 (Saturday)
+  startTime String   // e.g., "09:00"
+  endTime   String   // e.g., "19:00"
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([dayOfWeek])
+}
+
+model Service {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  price       Decimal  @db.Decimal(10, 2)
+  duration    Int      @default(30) // duration in minutes
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Expense {
+  id            String   @id @default(uuid())
+  description   String
+  amount        Decimal  @db.Decimal(10, 2)
+  date          DateTime @default(now())
+  category      String?  @default("Operativo")
+  paymentMethod String?  @default("Efectivo")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model BlockedSlot {
+  id        String   @id @default(uuid())
+  date      DateTime
+  startTime String   // "14:00"
+  endTime   String   // "16:00"
+  reason    String?
+  createdAt DateTime @default(now())
+}
+
+model WaitlistEntry {
+  id        String   @id @default(uuid())
+  userId    String
+  date      DateTime
+  notified  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+}
