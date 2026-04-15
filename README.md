@@ -76,4 +76,15 @@ Si deseas mejorar este sistema, ¡eres bienvenido! Siéntete libre de abrir un *
 Este proyecto está bajo la licencia MIT.
 
 ---
-*Desarrollado con ❤️ para Barberos Elite.*
+
+## 📱 Contacto y Redes Sociales
+
+Si quieres ver más contenido sobre este sistema o tienes dudas, puedes seguirme en mis redes sociales:
+
+[![TikTok Badge](https://img.shields.io/badge/TikTok-000000?style=for-the-badge&logo=tiktok&logoColor=white)](https://www.tiktok.com/@josesoy__)
+[![YouTube Badge](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@Josesoy1)
+[![Instagram Badge](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/josesoy__/)
+[![Facebook Badge](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/JoseSoyy/)
+
+---
+*Desarrollado con ❤️ por **JoseSoy** para Barberos Elite.*
